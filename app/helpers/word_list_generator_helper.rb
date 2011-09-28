@@ -1,0 +1,3 @@
+module WordListGeneratorHelper
+  
+end

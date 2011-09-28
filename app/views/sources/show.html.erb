@@ -1,0 +1,32 @@
+<div class="container">
+<h1>Show source</h1>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Url:</b>
+  <%= @source.url %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%= @source.link %>
+</p>
+<p>
+  <b>Language:</b>
+  <%= @source.language %>
+</p>
+
+<p>
+  <b>Words:</b>
+  <%= @source.words %>
+</p>
+
+<p>
+  <b>Maximun of sub page to scan:</b>
+  <%= @source.qtdSubPage %>
+</p>
+
+
+<%= link_to 'Edit', edit_source_path(@source) %> |
+<%= link_to 'Back', sources_path %>
+</div>

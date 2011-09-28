@@ -1,0 +1,16 @@
+<div class="container">
+<h1>WordList</h1>
+<div class="well">
+	<b><%=@words.split(";").size%></b> words<br/>
+	<table>
+	<% @linksUsed.each do |linkUsed| %>
+	  <tr>
+	    <td><a href="<%= linkUsed %>" target="_blank"><%= linkUsed %></a></td>
+		</tr>
+	<%end%>
+	</table>
+	<a href="/wordList/arquivo.txt" class="btn large success">WordList</a>
+</div>
+<br>
+<%= link_to 'Back', sources_path %>
+</div>
