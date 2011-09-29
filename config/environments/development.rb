@@ -23,6 +23,6 @@ WordListGenerator::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
   
-  ENV["REDISTOGO_URL"] = 'redis://redistogo:725ba233d7be72f5b745300e4a7723e3@filefish.redistogo.com:9918/' 
+  #ENV["REDISTOGO_URL"] = 'redis://redistogo:725ba233d7be72f5b745300e4a7723e3@filefish.redistogo.com:9918/' 
 end
 

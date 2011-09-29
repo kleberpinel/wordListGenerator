@@ -10,7 +10,7 @@ gem 'nokogiri'
 gem 'brazilian-rails'
 gem 'aws-s3'
 gem 'resque', :require => 'resque/server'
-gem 'redis'
+#gem 'redis'
 
 # Use unicorn as the web server
 # gem 'unicorn'
