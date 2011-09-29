@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'nokogiri'
 gem 'brazilian-rails'
 gem 'aws-s3'
+gem 'resque', :require => 'resque/server'
 
 # Use unicorn as the web server
 # gem 'unicorn'

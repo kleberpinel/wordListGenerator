@@ -1,15 +1,7 @@
 <div class="container">
-<h1>WordList</h1>
+<h1>WordList is creating...</h1>
 <div class="well">
-	<b><%=@words.split(";").size%></b> words<br/>
-	<table>
-	<% @linksUsed.each do |linkUsed| %>
-	  <tr>
-	    <td><a href="<%= linkUsed %>" target="_blank"><%= linkUsed %></a></td>
-		</tr>
-	<%end%>
-	</table>
-	<a href="https://s3.amazonaws.com/rails_s3/arquivo.txt" class="btn large success">WordList</a>
+	Go back and waits your process appear in the list
 </div>
 <br>
 <%= link_to 'Back', sources_path %>
