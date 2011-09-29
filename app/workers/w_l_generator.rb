@@ -41,6 +41,7 @@ class WLGenerator
   
   def self.perform()
     Rails.logger.info "Processamento incializado!"
+    logger.info '################################################# informational message'
     @sources = Source.all
     @words = ""
     @dups = Set.new
