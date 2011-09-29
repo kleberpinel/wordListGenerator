@@ -30,5 +30,49 @@
 		<%= link_to 'New Source', new_source_path, :class => "btn large primary"  %>
 		<%= link_to 'Generate Word List', word_list_generator_generate_path, :class => "btn large info" %>
 	</div>
+	
+	<h1>Execution LOGs</h1>
+	<p>Only the last execution file is persisted!</p>
+	<table class="zebra-striped">
+	  <tr>
+	    <th>Links visited</th>
+		<th>Number of words collected</th>
+	    <th>Execution start date</th>
+		<th>Execution end date</th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+
+	<% @logs.each do |log| %>
+	  <tr>
+	    <td>
+			<% if log.urls != nil
+				splited = log.urls.split(";")%>
+			
+				<ul>
+					<% splited.each do |url| 
+						if url != ""%>
+						<li><%=url%></li>
+					<%end 
+					end%>
+				<ul>
+			<%else%>
+				---
+			<%end%>
+		</td>
+	    <td><%= log.number_of_words %></td>
+		<td><%= log.execution_date.to_s(:pefefeost) %></td>
+		<td>
+		<% if log.final_execution_date != nil %>
+			<%= log.final_execution_date.to_s(:pefefeost) %>
+		<%else%>
+			---
+		<%end%>
+		</td>
+	    <td><a href="https://s3.amazonaws.com/rails_s3/arquivo.txt" class="btn large success" target="_blank">Download</a></td>
+	    <td><%= link_to 'Destroy', log, :confirm => 'Are you sure?', :method => :delete, :class => "btn small danger"%></td>
+	  </tr>
+	<% end %>
+	</table>
 </div>
 

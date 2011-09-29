@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Urls:</b>
+  <%= @log.urls %>
+</p>
+
+<p>
+  <b>Execution date:</b>
+  <%= @log.execution_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_log_path(@log) %> |
+<%= link_to 'Back', logs_path %>

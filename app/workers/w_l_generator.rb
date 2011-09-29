@@ -40,17 +40,18 @@ class WLGenerator
   end
   
   def self.perform()
-    Rails.logger.info "Processamento incializado!"
-    logger.info '################################################# informational message'
+    @log = Log.new(:execution_date => Time.new)
+    @log.urls = ""
+    
+    Rails.logger.info "Processamento incializado !"
     @sources = Source.all
     @words = ""
     @dups = Set.new
-    @linksUsed = Set.new
 
     @sources.each do |source|
       dupsBySource = Set.new
       i = 0
-      @linksUsed.add(source.url + source.link)
+      @log.urls +=  source.url + source.link + ";"
       doc = Nokogiri::HTML(open(source.url + source.link), nil, 'UTF-8')
       begin
         dupsBySource = getText(doc)
@@ -63,7 +64,7 @@ class WLGenerator
 
         if( i < source.qtdSubPage )
         #if( i < 0 )
-          @linksUsed.add(source.url + link)
+          @log.urls += source.url + link + ";"
           doc = Nokogiri::HTML(open(source.url + link), nil, 'UTF-8')
           begin
             dupsBySource = getText(doc)
@@ -77,15 +78,23 @@ class WLGenerator
       source.save
     end
 
+    now = 0
     @dups.each do |obj|
-      @words += "#{obj};"
+      if obj != ""
+        @words += "#{obj};"
+        now = now + 1
+      end
     end 
 
     AWS::S3::Base.establish_connection!(
-      :access_key_id     => ENV['S3_KEY'] || 'AKIAJ7ZNS42OYFZPC3LA',
-      :secret_access_key => ENV['S3_SECRET'] || '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'
+      :access_key_id     => ENV['S3_KEY'] ,
+      :secret_access_key => ENV['S3_SECRET']
     )
     AWS::S3::S3Object.store('arquivo.txt', @words , 'rails_s3', :access => :public_read)
+    
+    @log.number_of_words = now
+    @log.final_execution_date = Time.new
+    @log.save
     
     Rails.logger.info "Processamento finalizado!"
   end

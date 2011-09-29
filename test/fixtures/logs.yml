@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  urls: MyString
+  execution_date: 2011-09-29
+
+two:
+  urls: MyString
+  execution_date: 2011-09-29

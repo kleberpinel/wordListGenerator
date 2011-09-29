@@ -1,4 +1,6 @@
 WordListGenerator::Application.routes.draw do
+  resources :logs
+
   get "word_list_generator/generate"
 
   resources :sources

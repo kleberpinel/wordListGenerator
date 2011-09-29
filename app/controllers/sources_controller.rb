@@ -3,7 +3,8 @@ class SourcesController < ApplicationController
   # GET /sources.xml
   def index
     @sources = Source.all
-
+    @logs = Log.all
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @sources }

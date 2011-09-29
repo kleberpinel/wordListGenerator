@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110928180001) do
+ActiveRecord::Schema.define(:version => 20110929201527) do
+
+  create_table "logs", :force => true do |t|
+    t.string   "urls"
+    t.date     "execution_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "link_file"
+    t.date     "final_execution_date"
+    t.integer  "number_of_words"
+  end
 
   create_table "sources", :force => true do |t|
     t.string   "url"
