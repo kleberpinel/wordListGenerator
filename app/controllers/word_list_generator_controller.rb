@@ -3,13 +3,13 @@ require 'open-uri'
 require 'source'
 require 'brazilian-rails'
 require 'brI18n'
+require 'aws/s3'
 
 class WordListGeneratorController < ApplicationController
   
   @dups = nil
   
   def generate
-    maxSource = 10
     @sources = Source.all
     @words = ""
     @dups = Set.new
@@ -48,13 +48,19 @@ class WordListGeneratorController < ApplicationController
     
     @dups.each do |obj|
       @words += "#{obj};"
-    end    
+    end 
     
-    nome_arquivo = RAILS_ROOT + '/public/wordList/arquivo.txt'
-    puts nome_arquivo
-    arquivo = File.open(nome_arquivo, 'wb')
-    arquivo.puts @words
-    arquivo.close
+    AWS::S3::Base.establish_connection!(
+      :access_key_id     => ENV['S3_KEY'] || 'AKIAJ7ZNS42OYFZPC3LA',
+      :secret_access_key => ENV['S3_SECRET'] || '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'
+    )
+    AWS::S3::S3Object.store('arquivo.txt', @words , 'rails_s3', :access => :public_read)
+    
+    #nome_arquivo = RAILS_ROOT + '/public/wordList/arquivo.txt'
+    #puts nome_arquivo
+    #arquivo = File.open(nome_arquivo, 'wb')
+    #arquivo.puts @words
+    #arquivo.close
   end
   
   def getText(doc)

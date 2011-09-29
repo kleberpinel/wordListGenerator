@@ -29,6 +29,10 @@ GEM
       activesupport (= 3.0.9)
     activesupport (3.0.9)
     arel (2.0.10)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     brI18n (3.0.4)
       actionpack (>= 3.0.0)
       activerecord (>= 3.0.0)
@@ -98,11 +102,13 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.29)
+    xml-simple (1.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-s3
   brazilian-rails
   nokogiri
   rails (= 3.0.9)
