@@ -40,7 +40,7 @@ class Legal
   end
   
   def self.perform()
-    @log = Log.new(:execution_date => Date.new)
+    @log = Log.new(:execution_date => Time.new)
     @log.urls = ""
     
     
