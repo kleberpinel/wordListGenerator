@@ -81,7 +81,7 @@ class Legal
     now = 0
     @dups.each do |obj|
       if obj != ""
-        @words += "!!#{obj};"
+        @words += "#{obj};"
         now = now + 1
       end
     end 
@@ -92,8 +92,7 @@ class Legal
     )
     AWS::S3::S3Object.store('arquivo.txt', @words , 'rails_s3', :access => :public_read)
     
-    
-    @log.number_of_words = 5
+    @log.number_of_words = now
     @log.final_execution_date = Time.new
     @log.save
     
