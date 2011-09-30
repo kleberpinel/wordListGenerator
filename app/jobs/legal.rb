@@ -40,59 +40,12 @@ class Legal
   end
   
   def self.perform()
-    @log = Log.new(:execution_date => Time.new)
+    @log = Log.new(:execution_date => Date.new)
     @log.urls = ""
     
-    Rails.logger.info "Processamento incializado !"
-    @sources = Source.all
-    @words = ""
-    @dups = Set.new
-
-    @sources.each do |source|
-      dupsBySource = Set.new
-      i = 0
-      @log.urls +=  source.url + source.link + ";"
-      doc = Nokogiri::HTML(open(source.url + source.link), nil, 'UTF-8')
-      begin
-        dupsBySource = getText(doc)
-      rescue Exception => e
-       Rails.logger.info "Erro ---[" + source.url + source.link + "]-->" + e.message  
-      end
-      
-      l = doc.css('p a').map { |link| link['href'] }
-      l.each do |link|
-
-        #if( i < source.qtdSubPage )
-        if( i < 0 )
-          @log.urls += source.url + link + ";"
-          doc = Nokogiri::HTML(open(source.url + link), nil, 'UTF-8')
-          begin
-            dupsBySource = getText(doc)
-          rescue Exception => e
-           Rails.logger.info "Erro ---[" + source.url + link + "]-->" + e.message  
-          end
-          i = i +1
-        end
-      end
-      source.words = dupsBySource.size
-      source.save
-    end
-
-    now = 0
-    @dups.each do |obj|
-      if obj != ""
-        @words += "#{obj};"
-        now = now + 1
-      end
-    end 
-
-    AWS::S3::Base.establish_connection!(
-      :access_key_id     => ENV['S3_KEY'] ,
-      :secret_access_key => ENV['S3_SECRET']
-    )
-    AWS::S3::S3Object.store('arquivo.txt', @words , 'rails_s3', :access => :public_read)
     
-    @log.number_of_words = now
+    
+    @log.number_of_words = 5
     @log.final_execution_date = Time.new
     @log.save
     
