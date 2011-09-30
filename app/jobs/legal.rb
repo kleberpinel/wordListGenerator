@@ -62,8 +62,8 @@ class Legal
       l = doc.css('p a').map { |link| link['href'] }
       l.each do |link|
 
-        #if( i < source.qtdSubPage )
-        if( i < 0 )
+        if( i < source.qtdSubPage )
+        #if( i < 0 )
           @log.urls += source.url + link + ";"
           doc = Nokogiri::HTML(open(source.url + link), nil, 'UTF-8')
           begin
@@ -81,7 +81,7 @@ class Legal
     now = 0
     @dups.each do |obj|
       if obj != ""
-        @words += "#{obj};"
+        @words += "!!#{obj};"
         now = now + 1
       end
     end 
