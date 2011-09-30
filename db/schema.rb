@@ -10,10 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110929201527) do
+ActiveRecord::Schema.define(:version => 20110930150125) do
 
   create_table "logs", :force => true do |t|
-    t.string   "urls"
+    t.text     "urls",                 :limit => 255
     t.date     "execution_date"
     t.datetime "created_at"
     t.datetime "updated_at"
