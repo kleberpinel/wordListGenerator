@@ -1,7 +1,7 @@
 class ModifyUrlsToSource < ActiveRecord::Migration
   def self.up
     # change_table() yields a Table instance
-    change_table(:log) do |t|
+    change_table(:logs) do |t|
       t.column :urls, :text
     end
   end
