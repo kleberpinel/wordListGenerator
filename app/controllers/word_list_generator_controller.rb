@@ -1,4 +1,4 @@
-require 'w_l_generator'
+require 'legal'
 
 class WordListGeneratorController < ApplicationController
   
