@@ -52,8 +52,9 @@ class Legal
       dupsBySource = Set.new
       i = 0
       @log.urls +=  source.url + source.link + ";"
-      doc = Nokogiri::HTML(open(source.url + source.link), nil, 'UTF-8')
+      
       begin
+        doc = Nokogiri::HTML(open(source.url + source.link), nil, 'UTF-8')
         dupsBySource = getText(doc)
       rescue Exception => e
        Rails.logger.info "Erro ---[" + source.url + source.link + "]-->" + e.message  
@@ -65,8 +66,8 @@ class Legal
         if( i < source.qtdSubPage )
         #if( i < 0 )
           @log.urls += source.url + link + ";"
-          doc = Nokogiri::HTML(open(source.url + link), nil, 'UTF-8')
           begin
+            doc = Nokogiri::HTML(open(source.url + link), nil, 'UTF-8')
             dupsBySource = getText(doc)
           rescue Exception => e
            Rails.logger.info "Erro ---[" + source.url + link + "]-->" + e.message  
