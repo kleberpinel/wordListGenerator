@@ -1,3 +1,13 @@
 Este pojeto tem como objetivo gerar uma wordList baseada em sites da internet. Atualmente [29/09/2011] sua engine foi feita para a formatação do html do wikipedia, sendo assim, se você deseja extrair de algum outro site, só fazer um fork e implementar :)
 
-commit ":)ffddd"
+-- To install in Heroku ---
+$ heroku create <APP-NAME>
+$ git push heroku master
+$ heroku config:add S3_KEY=<YOUR S3_KEY>  S3_SECRET=<YOUR S3_SECRET>
+$ heroku rake db:migrate
+$ heroku addons:add redistogo:nano
+Get RedisToGo url and replace it on config/initializers/resque.rb
+$ git commit -a -m "Editing config/initializers/resque.rb file"
+$ git push heroku master
+Start the worker in resque
+$ heroku rake resque:work QUEUE='*'
