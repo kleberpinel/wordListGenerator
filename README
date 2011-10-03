@@ -1,1 +1,3 @@
 Este pojeto tem como objetivo gerar uma wordList baseada em sites da internet. Atualmente [29/09/2011] sua engine foi feita para a formatação do html do wikipedia, sendo assim, se você deseja extrair de algum outro site, só fazer um fork e implementar :)
+
+commit ":)"
